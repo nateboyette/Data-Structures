@@ -14,7 +14,7 @@ class Queue:
 
     def dequeue(self):
         return f"{self.storage.head.get_value()} was removed"
-        self.storage.remove_head()
+        return self.storage.remove_head()
 
     def len(self):
         self.size = 0
@@ -36,15 +36,8 @@ class Queue:
 q = Queue()
 
 print(q.len())
-q.enqueue(2)
-print(q.len())
-q.enqueue(4)
-print(q.len())
-q.enqueue(6)
-q.enqueue(8)
-q.enqueue(10)
-q.enqueue(12)
-q.enqueue(14)
-q.enqueue(16)
-q.enqueue(18)
-print(q.len())
+q.enqueue(100)
+q.enqueue(105)
+
+print(q.storage.head.get_value())
+print(q.dequeue())

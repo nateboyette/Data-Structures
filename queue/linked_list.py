@@ -24,10 +24,8 @@ class LinkedList:
         if not self.head and not self.tail:
             self.head = new_node
             self.tail = new_node
-
         else:
             self.tail.set_next(new_node)
-
             self.tail = new_node
 
     def remove_head(self):
