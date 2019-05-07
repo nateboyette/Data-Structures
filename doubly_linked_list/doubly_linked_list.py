@@ -12,6 +12,9 @@ class ListNode:
   after this node. Note that this node could already
   have a next node it is point to."""
 
+    def get_value(self):
+        return self.value
+
     def insert_after(self, value):
         current_next = self.next
         self.next = ListNode(value, self, current_next)
@@ -56,9 +59,11 @@ class DoublyLinkedList:
 
         if not self.head and not self.tail:
             self.head = new_node
-            self.head = new_node
+            self.tail = new_node
+            print('This is the head')
         else:
-            self.head.insert_before(value)
+            self.head.insert_before(new_node)
+            self.head = new_node
 
     def remove_from_head(self):
         pass
@@ -90,4 +95,10 @@ class DoublyLinkedList:
 
 dblList = DoublyLinkedList()
 
-dblList.add_to_tail(3)
+dblList.add_to_head(2)
+dblList.add_to_head(55)
+dblList.add_to_head(60)
+
+
+print(dblList.head.get_value())
+print(dblList.tail.get_value())
