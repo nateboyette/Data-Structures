@@ -52,7 +52,11 @@ class DoublyLinkedList:
         self.length = 1 if node is not None else 0
 
     def __len__(self):
-        return self.length
+
+        if self.head == self.tail:
+            return 1
+
+            return self.length
 
     def add_to_head(self, value):
         new_node = ListNode(value)
@@ -61,11 +65,12 @@ class DoublyLinkedList:
             self.head = new_node
             self.tail = new_node
         else:
-            self.head.insert_before(new_node)
-            self.head = new_node
+            self.head.insert_before(value)
+            self.head = self.head.prev
 
     def remove_from_head(self):
-        pass
+        new_head = self.head
+        return new_head.get_value()
 
     def add_to_tail(self, value):
         new_node = ListNode(value)
@@ -74,8 +79,8 @@ class DoublyLinkedList:
             self.head = new_node
             self.tail = new_node
         else:
-            self.tail.insert_after(new_node)
-            self.tail = new_node
+            self.tail.insert_after(value)
+            self.tail = self.tail.next
 
     def remove_from_tail(self):
         pass
@@ -99,7 +104,9 @@ dblList.add_to_head(2)
 dblList.add_to_head(55)
 dblList.add_to_head(60)
 dblList.add_to_tail(20)
+# dblList.add_to_tail(30)
+# dblList.remove_from_head()
 
-
+print(dblList.head.next.get_value())
 print(dblList.head.get_value())
 print(dblList.tail.get_value())
