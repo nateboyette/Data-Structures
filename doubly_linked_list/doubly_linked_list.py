@@ -112,9 +112,14 @@ class DoublyLinkedList:
         self.length -= 1
 
     def move_to_end(self, node):
-        self.add_to_tail(node.value)
-        node.delete()
-        self.length -= 1
+        if node.value == self.head:
+            self.add_to_tail(node.value)
+            self.remove_from_head()
+            # node.delete()
+
+        else:
+            self.add_to_tail(node.value)
+            self.remove_from_head()
 
     def delete(self, node):
         if node.prev is None:
@@ -126,18 +131,21 @@ class DoublyLinkedList:
             self.length -= 1
 
     def get_max(self):
+        max_value = self.head.value
         if self.length == 1 and self.head == self.tail:
             return self.head.value
         elif self.length > 1:
             current_node = self.head
-            max_value = 0
-            while current_node:
-                if current_node.next.value > max_value:
+            while current_node is not None:
+                if current_node.next is None:
+                    break
+                elif current_node.next.value > max_value:
                     max_value = current_node.next.value
                 current_node = current_node.next
-            return max_value
         else:
             return 0
+
+        return max_value
 
 
 dblList = DoublyLinkedList()
@@ -145,11 +153,7 @@ dblList = DoublyLinkedList()
 dblList.add_to_head(2)
 dblList.add_to_head(55)
 dblList.add_to_head(60)
-dblList.add_to_tail(20)
 dblList.add_to_tail(30)
-dblList.remove_from_head()
-dblList.remove_from_tail()
 
-print(dblList.head.next.get_value())
-print(dblList.head.get_value())
-# print(dblList.tail.get_value())
+
+print(dblList.get_max())
