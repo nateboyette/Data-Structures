@@ -3,7 +3,9 @@ class Heap:
         self.storage = []
 
     def insert(self, value):
-        pass
+        self.storage.append(value)
+
+        self._bubble_up(int(len(self.storage) - 1))
 
     def delete(self):
         pass
@@ -16,7 +18,7 @@ class Heap:
 
     # the index parameter is the index of the node wherever it is in the array
     def _bubble_up(self, index):
-        # loop until either the element reaches the top fo the array
+        # loop until either the element reaches the top of the array
         # or we'll break the loop when we realize the element's priority
         # is not larger than its parent's value
         while index > 0:
@@ -36,3 +38,8 @@ class Heap:
 
     def _sift_down(self, index):
         pass
+
+
+l = [2, 5, 4, 3, 7, 6, 4, 3]
+
+print(len(l) - 1)

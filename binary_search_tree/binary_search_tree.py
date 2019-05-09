@@ -64,7 +64,6 @@ class BinarySearchTree:
 
     def for_each(self, cb):
 
-        current_node = self
         left_node = self.left
         right_node = self.right
         cb(self.value)
