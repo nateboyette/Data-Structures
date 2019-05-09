@@ -4,19 +4,26 @@ class Heap:
 
     def insert(self, value):
         self.storage.append(value)
-
         self._bubble_up(int(len(self.storage) - 1))
 
     def delete(self):
-        pass
+
+        root = self.storage[0]
+        # last_index = len(self.storage) - 1
+        self.storage[0], self.storage[-1] = self.storage[-1], self.storage[0]
+        self.storage.pop()
+        self._sift_down(0)
+
+        return root
 
     def get_max(self):
-        pass
+        return self.storage[0]
 
     def get_size(self):
-        pass
+        return len(self.storage)
 
     # the index parameter is the index of the node wherever it is in the array
+
     def _bubble_up(self, index):
         # loop until either the element reaches the top of the array
         # or we'll break the loop when we realize the element's priority
@@ -37,9 +44,15 @@ class Heap:
                 break
 
     def _sift_down(self, index):
-        pass
 
-
-l = [2, 5, 4, 3, 7, 6, 4, 3]
-
-print(len(l) - 1)
+        left_child = (index * 2) + 1
+        right_child = (index * 2) + 2
+        if left_child < len(self.storage) - 1 or right_child < len(self.storage) - 1:
+            if self.storage[left_child] < self.storage[right_child]:
+                if self.storage[index] < self.storage[right_child]:
+                    self.storage[index], self.storage[right_child] = self.storage[right_child], self.storage[index]
+                    self._sift_down(right_child)
+            else:
+                if self.storage[index] < self.storage[left_child]:
+                    self.storage[index], self.storage[left_child] = self.storage[left_child], self.storage[index]
+                    self._sift_down(left_child)
