@@ -31,13 +31,3 @@ class Queue:
             current_value = current_value.get_next()
 
         return self.size
-
-
-q = Queue()
-
-print(q.len())
-q.enqueue(100)
-q.enqueue(105)
-
-print(q.storage.head.get_value())
-print(q.dequeue())
